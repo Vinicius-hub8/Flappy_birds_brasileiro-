@@ -1,0 +1,30 @@
+import os, time, json, datetime 
+
+def Limpartela():
+    os.system('cls') 
+
+def aguardar(segundos):
+    time.sleep(segundos)
+
+def inicializarBancoDeDados():
+    try:
+        banco = open("base.atitus","r")
+    except:
+        print("Banco de Dados Inexistente. Criando...")
+        banco = open("base.atitus","w")
+    
+def escreverDados(nome, pontos):
+    banco = open("base.atitus","r")
+    dados = banco.read()
+    banco.close()
+    if dados != "":
+        dadosDict = json.loads(dados)
+    else:
+        dadosDict = {}
+        
+    data_br = datetime.now().strftime("%d/%m/%Y")
+    dadosDict[nome] = (pontos, data_br)
+    
+    banco = open("base.atitus","w")
+    banco.write(json.dumps(dadosDict))
+    banco.close()
