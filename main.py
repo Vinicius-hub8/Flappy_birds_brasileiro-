@@ -13,7 +13,7 @@ contar_partidas = funcoes.contar_partidas
 
 def mostrar_historico_ultimas_partidas(tentativas=5):
     try:
-        with open("base.atitus", "r") as banco:
+        with open("log.dat", "r") as banco:
             dados = banco.read()
         if dados != "":
             dadosDict = json.loads(dados)
